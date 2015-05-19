@@ -15,7 +15,28 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/view/" /> <!-- mapping 앞에 들어갈 내용 -->
 		<property name="suffix" value=".jsp" />	 <!-- mapping 뒤에 들어갈 내용 -->
+		<property name="order" value="2" />
 	</bean>
+	
+	
+	<!-- Tiles Setting -->
+	
+	<bean id="tilesconfiguer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles2def.xml</value>
+			</list>
+		</property>	
+	</bean>
+	
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" 
+			value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+		<property name="order" value="1" />
+	</bean>
+	
 
 	<bean id="IndexController" class="com.kms.controller.IndexController">
 		<property name="dao" ref="TestDao" />
@@ -23,9 +44,7 @@
 	<bean id="TestController" class="com.kms.controller.TestController">
 		<property name="dao" ref="TestDao" />
 	</bean>	
-	
-	<bean id="TestModelValidator" class="com.kms.validator.TestModelValidator"></bean>
-	
+		
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="com.kms.message.validation"/>

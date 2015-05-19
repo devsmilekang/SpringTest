@@ -23,6 +23,13 @@ private TestDao dao;
 		this.dao = dao;
 	}
 	
+	@RequestMapping("/main.do")
+	public ModelAndView mainPage(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("main");
+		return mv;
+	}
+	
 	@RequestMapping("/jstl.do")  
 	public ModelAndView dbStart(){
 		ModelAndView mav = new ModelAndView();
