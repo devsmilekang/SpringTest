@@ -16,6 +16,9 @@
 	<bean id="IndexController" class="com.kms.controller.IndexController">
 		<property name="dao" ref="TestDao" />
 	</bean>	
+	<bean id="TestController" class="com.kms.controller.TestController">
+		<property name="dao" ref="TestDao" />
+	</bean>	
 	
 	<bean id="TestDao" class="com.kms.dao.TestDao">
 		<property name="oracleSession" ref="oracleSessionTemplate"/>

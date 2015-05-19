@@ -6,26 +6,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kms.dao.TestDao;
 
+
 @Controller
-public class IndexController {
+public class TestController {
 	
-	private TestDao dao;
-	
-	//spring���� ���� ���� �ʿ�
+private TestDao dao;
+
 	public void setDao(TestDao dao) {
 		this.dao = dao;
 	}
-
-	@RequestMapping("/index.do")  //parameter address
-	public ModelAndView hello(){
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("message", "Hello Spring !!!");
-		mav.setViewName("index");
-		
-		return mav;
-	}
 	
-	@RequestMapping("/dbStart.do")  //parameter address
+	@RequestMapping("/dbTest.do")  //parameter address
 	public ModelAndView dbStart(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",dao.getDbValue());
