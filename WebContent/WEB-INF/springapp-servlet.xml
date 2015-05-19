@@ -7,12 +7,36 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="IndexController" class="com.kms.controller.IndexController" />
-	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/view/" /> <!-- mapping 앞에 들어갈 내용 -->
 		<property name="suffix" value=".jsp" />	 <!-- mapping 뒤에 들어갈 내용 -->
 	</bean>
+
+	<bean id="IndexController" class="com.kms.controller.IndexController">
+		<property name="dao" ref="TestDao" />
+	</bean>	
+	
+	<bean id="TestDao" class="com.kms.dao.TestDao">
+		<property name="oracleSession" ref="oracleSessionTemplate"/>
+	</bean>
+	
+	<bean id="oracleSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>	
+	</bean>
+	
+	<bean id="sqlSessionFactoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	
+	<bean id="myDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/oracle"/>
+		<property name="resourceRef" value="true"/>	
+	</bean>
+
 
 </beans>
