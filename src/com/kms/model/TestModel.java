@@ -2,8 +2,12 @@ package com.kms.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class TestModel implements Serializable {
 	private int id;
+	
+	@NotEmpty
 	private String name;
 	
 	public int getId() {
