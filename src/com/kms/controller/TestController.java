@@ -16,12 +16,12 @@ private TestDao dao;
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/dbTest.do")  //parameter address
+	@RequestMapping("/jstl.do")  //parameter address
 	public ModelAndView dbStart(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",dao.getDbValue());
 		mav.addObject("message", "db Spring !!!");
-		mav.setViewName("index");
+		mav.setViewName("jstlTest");
 		
 		return mav;
 	}
